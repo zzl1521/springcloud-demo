@@ -1,0 +1,41 @@
+server:
+  #服务的端口
+  port: 9997
+spring:
+  application:
+    #服务名称,CLIENT端用来享受服务
+    name: springcloud-service
+  cloud:
+    zookeeper:
+      #ZK_ADDRESS
+      connect-string: 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183
+      discovery:
+        register: true
+        #服务地址
+        instance-host: 127.0.0.1
+        #服务端口
+        instance-port: ${server.port}
+        #instance-port: 8080
+        enabled: true
+  datasource:
+      name: mydb
+      url: jdbc:mysql://127.0.0.1:3306/mydb
+      username: root
+      password: root
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+

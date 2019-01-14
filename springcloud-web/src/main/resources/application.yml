@@ -1,0 +1,23 @@
+server:
+  port: 9990
+spring:
+  application:
+    name: springcloud-web
+  cloud:
+    zookeeper:
+      enabled: true
+      connect-string: 127.0.0.1:2181,127.0.0.1:2182,127.0.0.1:2183
+      discovery:
+        root: /services
+        register: true
+#  datasource:
+#    url: jdbc:oracle:thin:@host233:1521/orcl
+#    username: root
+#    password: root
+#    driver-class-name : oracle.jdbc.driver.OracleDriver
+
+#熔断配置，设置为true容易出现超时
+feign:
+  hystrix:
+    enabled: false
+
